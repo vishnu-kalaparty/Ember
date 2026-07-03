@@ -1,0 +1,16 @@
+anthropic>=0.120.0
+mistralai>=2.7.0
+openai>=1.0.0
+spacy>=3.8.0
+chromadb>=0.5.0
+sentence-transformers>=2.2.0
+rank-bm25
+transformers
+torch
+numpy
+pyemd  # MoverScore (Earth Mover's Distance)
+scipy
+python-dotenv
+
+# after installing, download the spaCy model used for VerbPhrase extraction:
+#   python -m spacy download en_core_web_lg

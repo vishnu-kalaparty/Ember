@@ -1,0 +1,16 @@
+# Local data (HHS breach export, splits, labels, caches)
+data/*
+!data/bad_verbs.csv
+pipeline/data
+pipeline/results
+pipeline/vectorstore
+
+# Secrets
+.env
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
