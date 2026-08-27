@@ -1,0 +1,212 @@
+{
+  "comparison": "Human (G_r) vs RAG",
+  "source": "pipeline/results/test_diversity_rag_vs_gr.json",
+  "n_reports": 599,
+  "methodology": {
+    "paired_t_test": "scipy.stats.ttest_rel on report-aligned pairs; None/NaN dropped pairwise",
+    "wasserstein_distance": "scipy.stats.wasserstein_distance on all valid per-report values per group (marginal 1D empirical distributions; unequal n allowed)",
+    "js_divergence": "normalized histogram on shared Freedman-Diaconis bin edges (numpy.histogram_bin_edges); JS = jensenshannon(p, q, base=2)**2 in [0, 1]",
+    "interpretation": {
+      "wasserstein_distance": "Earth Mover's Distance in the metric's native units. Higher = more mass must be transported to align RAG and Human histograms (larger distributional shift).",
+      "js_divergence": "Symmetric divergence in [0, 1] (base-2 JS). 0 = identical binned distributions; 1 = maximally different. Higher = greater distributional dissimilarity regardless of location shift vs shape difference.",
+      "paired_t_test": "Tests whether mean per-report difference (RAG \u2212 Human) differs from 0. Significant p (< 0.05) = systematic shift; does not measure effect size of distributional overlap."
+    }
+  },
+  "paper_metrics": [
+    "self_bleu_intra_set",
+    "self_bleu_loo",
+    "srs"
+  ],
+  "results": [
+    {
+      "key": "cr",
+      "label": "CR (gzip)",
+      "in_paper": false,
+      "n_rag": 599,
+      "n_gr": 599,
+      "n_pairs": 599,
+      "mean_rag": 1.3546402715606274,
+      "mean_gr": 1.231151363531883,
+      "mean_diff_rag_minus_gr": 0.12348890802874446,
+      "t_paired": 16.95939855584549,
+      "p_paired": 5.789355003268636e-53,
+      "wasserstein_distance": 0.12421510904647265,
+      "js_divergence": 0.23990531183861064,
+      "js_method": {
+        "n_bins": 50,
+        "method": "normalized histogram on shared Freedman-Diaconis bin edges (numpy.histogram_bin_edges); JS = jensenshannon(p, q, base=2)**2 in [0, 1]"
+      }
+    },
+    {
+      "key": "cr_pos",
+      "label": "CR:POS",
+      "in_paper": false,
+      "n_rag": 599,
+      "n_gr": 599,
+      "n_pairs": 599,
+      "mean_rag": 1.4145584789880277,
+      "mean_gr": 1.2840904008100358,
+      "mean_diff_rag_minus_gr": 0.1304680781779919,
+      "t_paired": 11.05862449570425,
+      "p_paired": 5.412082450738994e-26,
+      "wasserstein_distance": 0.1428414939669183,
+      "js_divergence": 0.2104267406438342,
+      "js_method": {
+        "n_bins": 50,
+        "method": "normalized histogram on shared Freedman-Diaconis bin edges (numpy.histogram_bin_edges); JS = jensenshannon(p, q, base=2)**2 in [0, 1]"
+      }
+    },
+    {
+      "key": "ngd",
+      "label": "NGD (n=1..4)",
+      "in_paper": false,
+      "n_rag": 599,
+      "n_gr": 599,
+      "n_pairs": 599,
+      "mean_rag": 3.827718678993331,
+      "mean_gr": 3.8097820371625786,
+      "mean_diff_rag_minus_gr": 0.017936641830752276,
+      "t_paired": 3.3990379332117464,
+      "p_paired": 0.0007212314963201548,
+      "wasserstein_distance": 0.023571194631960536,
+      "js_divergence": 0.11198310823771296,
+      "js_method": {
+        "n_bins": 50,
+        "method": "normalized histogram on shared Freedman-Diaconis bin edges (numpy.histogram_bin_edges); JS = jensenshannon(p, q, base=2)**2 in [0, 1]"
+      }
+    },
+    {
+      "key": "srs",
+      "label": "SRS (n=4)",
+      "in_paper": true,
+      "n_rag": 599,
+      "n_gr": 599,
+      "n_pairs": 599,
+      "mean_rag": 7.112110406593784,
+      "mean_gr": 7.6734766169643525,
+      "mean_diff_rag_minus_gr": -0.5613662103705686,
+      "t_paired": -9.413894561406599,
+      "p_paired": 1.0195572469006051e-19,
+      "wasserstein_distance": 0.5621542879664168,
+      "js_divergence": 0.12131665156965273,
+      "js_method": {
+        "n_bins": 50,
+        "method": "normalized histogram on shared Freedman-Diaconis bin edges (numpy.histogram_bin_edges); JS = jensenshannon(p, q, base=2)**2 in [0, 1]"
+      }
+    },
+    {
+      "key": "srs_normalized",
+      "label": "SRS / (L-3)",
+      "in_paper": false,
+      "n_rag": 599,
+      "n_gr": 599,
+      "n_pairs": 599,
+      "mean_rag": 0.2745508570169736,
+      "mean_gr": 0.37269686642679045,
+      "mean_diff_rag_minus_gr": -0.09814600940981683,
+      "t_paired": -12.566039008085156,
+      "p_paired": 2.646317072392326e-32,
+      "wasserstein_distance": 0.09819558518513159,
+      "js_divergence": 0.15666247253765106,
+      "js_method": {
+        "n_bins": 50,
+        "method": "normalized histogram on shared Freedman-Diaconis bin edges (numpy.histogram_bin_edges); JS = jensenshannon(p, q, base=2)**2 in [0, 1]"
+      }
+    },
+    {
+      "key": "self_bleu_loo",
+      "label": "Self-BLEU, LOO",
+      "in_paper": true,
+      "n_rag": 599,
+      "n_gr": 599,
+      "n_pairs": 599,
+      "mean_rag": 0.19985024514255958,
+      "mean_gr": 0.22418231783272222,
+      "mean_diff_rag_minus_gr": -0.02433207269016263,
+      "t_paired": -5.238277627989558,
+      "p_paired": 2.2490376268134176e-07,
+      "wasserstein_distance": 0.03282169090383914,
+      "js_divergence": 0.14655967854701954,
+      "js_method": {
+        "n_bins": 50,
+        "method": "normalized histogram on shared Freedman-Diaconis bin edges (numpy.histogram_bin_edges); JS = jensenshannon(p, q, base=2)**2 in [0, 1]"
+      }
+    },
+    {
+      "key": "self_bleu_intra_set",
+      "label": "Self-BLEU, intra-set",
+      "in_paper": true,
+      "n_rag": 599,
+      "n_gr": 382,
+      "n_pairs": 382,
+      "mean_rag": 0.07225640236276512,
+      "mean_gr": 0.055552241749425996,
+      "mean_diff_rag_minus_gr": 0.016394925902679477,
+      "t_paired": 11.52009273588737,
+      "p_paired": 1.4993962583903823e-26,
+      "wasserstein_distance": 0.016704160613339125,
+      "js_divergence": 0.2225752652249969,
+      "js_method": {
+        "n_bins": 50,
+        "method": "normalized histogram on shared Freedman-Diaconis bin edges (numpy.histogram_bin_edges); JS = jensenshannon(p, q, base=2)**2 in [0, 1]"
+      }
+    },
+    {
+      "key": "words_per_block",
+      "label": "Words / block",
+      "in_paper": false,
+      "n_rag": 599,
+      "n_gr": 599,
+      "n_pairs": 599,
+      "mean_rag": 31.457429048414024,
+      "mean_gr": 27.69949916527546,
+      "mean_diff_rag_minus_gr": 3.7579298831385657,
+      "t_paired": 6.76538372740018,
+      "p_paired": 3.173726666599001e-11,
+      "wasserstein_distance": 4.53923205342237,
+      "js_divergence": 0.13836463104253854,
+      "js_method": {
+        "n_bins": 50,
+        "method": "normalized histogram on shared Freedman-Diaconis bin edges (numpy.histogram_bin_edges); JS = jensenshannon(p, q, base=2)**2 in [0, 1]"
+      }
+    },
+    {
+      "key": "words_per_action",
+      "label": "Words / action",
+      "in_paper": false,
+      "n_rag": 599,
+      "n_gr": 599,
+      "n_pairs": 599,
+      "mean_rag": 10.485809682804675,
+      "mean_gr": 15.97376182526433,
+      "mean_diff_rag_minus_gr": -5.487952142459655,
+      "t_paired": -25.176938904725223,
+      "p_paired": 6.469846528743575e-96,
+      "wasserstein_distance": 5.487952142459655,
+      "js_divergence": 0.3873031275065093,
+      "js_method": {
+        "n_bins": 50,
+        "method": "normalized histogram on shared Freedman-Diaconis bin edges (numpy.histogram_bin_edges); JS = jensenshannon(p, q, base=2)**2 in [0, 1]"
+      }
+    },
+    {
+      "key": "vp_count",
+      "label": "Verb phrases / report",
+      "in_paper": false,
+      "n_rag": 599,
+      "n_gr": 599,
+      "n_pairs": 599,
+      "mean_rag": 4.156928213689483,
+      "mean_gr": 3.1035058430717863,
+      "mean_diff_rag_minus_gr": 1.0534223706176964,
+      "t_paired": 13.640691502822206,
+      "p_paired": 4.418393891221898e-37,
+      "wasserstein_distance": 1.0868113522537564,
+      "js_divergence": 0.22732639611858607,
+      "js_method": {
+        "n_bins": 50,
+        "method": "normalized histogram on shared Freedman-Diaconis bin edges (numpy.histogram_bin_edges); JS = jensenshannon(p, q, base=2)**2 in [0, 1]"
+      }
+    }
+  ]
+}
